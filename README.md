@@ -34,3 +34,15 @@ Credentials should be stored using:
 
 The repository uses a .gitignore file to prevent accidental commits of sensitive files.
 
+
+### Secret Scanning
+
+GitHub Secret Scanning is not available for this repository/account type.
+
+To reduce the risk of exposing sensitive information:
+- Branch protection has been configured
+- A .gitignore file is used
+- Credentials are not stored in source code
+- Contributors are expected to use secure credential storage methods
+
+
