@@ -15,8 +15,8 @@
 ### Branch Naming Convention
 
 feature/<initials>-<topic>
-
+Examples
 - feature/PM-readme
 - feature/MY-project-board
 - feature/PG-security-settings
-- feature/SD-
+- feature/SD-security-review
