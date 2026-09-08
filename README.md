@@ -20,3 +20,17 @@ Examples
 - feature/MY-project-board
 - feature/PG-security-settings
 - feature/SD-security-review
+
+## Security Practices
+
+### Credential Management
+
+Sensitive information such as passwords, API keys, certificates, and connection strings must not be stored in this repository.
+
+Credentials should be stored using:
+- Environment variables
+- Secret management solutions
+- Secure vault services
+
+The repository uses a .gitignore file to prevent accidental commits of sensitive files.
+
