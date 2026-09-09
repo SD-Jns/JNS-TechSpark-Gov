@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | JNS AI Government Project Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Sidebar navigation">
+        <div class="brand-mark" aria-label="JNS home"><span>JNS</span></div>
+        <div class="brand-copy"><strong>Project Tracker</strong><span>Government Delivery</span></div>
+        <nav class="sidebar-nav" aria-label="Pages">
+          <a class="nav-button" href="index.html" aria-label="Overview" title="Overview">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zm9 0h7v4h-7zm0 6h7v10h-7zM4 13h7v7H4z"/></svg>
+            <span>Overview</span>
+          </a>
+          <a class="nav-button active" href="projects.html" aria-label="Projects" title="Projects">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5zm2 1.5h12v10H6zm2 2v6h8v-6zm2 1h4v4h-4z"/></svg>
+            <span>Project register</span>
+          </a>
+          <a class="nav-button" href="issues.html" aria-label="Issues" title="Issues">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75a6 6 0 0 1 6 6v4.4l1.9 4.1a1 1 0 0 1-.9 1.45H4.99a1 1 0 0 1-.9-1.45l1.9-4.1V8.75a6 6 0 0 1 6-6zm0 18a2.5 2.5 0 0 1-2.45-2h4.9A2.5 2.5 0 0 1 12 20.75z"/></svg>
+            <span>Issue tracking</span>
+          </a>
+          <a class="nav-button" href="tasks.html" aria-label="Tasks" title="Tasks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h10v2H8zm0 6h10v2H8zm0 6h10v2H8zM4 5h2v2H4zm0 6h2v2H4zm0 6h2v2H4z"/></svg>
+            <span>AI summaries</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="page-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Portfolio management</p>
+            <h1>Project register</h1>
+          </div>
+          <div class="header-actions">
+            <button class="pill-button secondary" id="quickReminderOpen">Reminders</button>
+            <button class="pill-button primary" id="projectQuickAdd">+ New project</button>
+          </div>
+        </header>
+
+        <aside id="notificationPanel" class="notification-panel hidden"></aside>
+
+        <section class="panel page-panel">
+          <div class="panel-header">
+            <h3>Portfolio projects</h3>
+            <div class="filters compact-inline">
+              <label class="select-wrap narrow">
+                <select id="projectDepartmentFilter">
+                  <option value="All departments">All departments</option>
+                  <option value="Health">Health</option>
+                  <option value="Education">Education</option>
+                  <option value="Human Settlements">Human Settlements</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table class="project-register-table">
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Department</th>
+                  <th>Owner</th>
+                  <th>Due</th>
+                  <th>Progress</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="projectTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel page-panel form-panel">
+          <div class="panel-header">
+            <h3>Add a project</h3>
+          </div>
+          <form id="projectForm" class="entity-form">
+            <div class="field-grid">
+              <label>
+                Project name
+                <input type="text" name="name" placeholder="e.g. Social housing digitisation" required />
+              </label>
+              <label>
+                Department
+                <select name="department" required>
+                  <option value="Health">Health</option>
+                  <option value="Education">Education</option>
+                  <option value="Human Settlements">Human Settlements</option>
+                </select>
+              </label>
+              <label>
+                Owner
+                <input type="text" name="owner" placeholder="Project owner" required />
+              </label>
+              <label>
+                Progress (%)
+                <input type="number" name="progress" min="0" max="100" value="50" required />
+              </label>
+              <label>
+                Due date
+                <input type="date" name="dueDate" required />
+              </label>
+            </div>
+            <button type="submit" class="primary submit-button">Save project</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

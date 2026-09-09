@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JNS AI Government Project Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Sidebar navigation">
+        <div class="brand-mark" aria-label="JNS home">
+          <span>JNS</span>
+        </div>
+        <div class="brand-copy">
+          <strong>Project Tracker</strong>
+          <span>Government Delivery</span>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Pages">
+          <a class="nav-button active" href="index.html" aria-label="Overview" title="Overview">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zm9 0h7v4h-7zm0 6h7v10h-7zM4 13h7v7H4z"/></svg>
+            <span>Overview</span>
+          </a>
+          <a class="nav-button" href="projects.html" aria-label="Projects" title="Projects">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5zm2 1.5h12v10H6zm2 2v6h8v-6zm2 1h4v4h-4z"/></svg>
+            <span>Project register</span>
+          </a>
+          <a class="nav-button" href="issues.html" aria-label="Issues" title="Issues">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75a6 6 0 0 1 6 6v4.4l1.9 4.1a1 1 0 0 1-.9 1.45H4.99a1 1 0 0 1-.9-1.45l1.9-4.1V8.75a6 6 0 0 1 6-6zm0 18a2.5 2.5 0 0 1-2.45-2h4.9A2.5 2.5 0 0 1 12 20.75z"/></svg>
+            <span>Issue tracking</span>
+          </a>
+          <a class="nav-button" href="tasks.html" aria-label="Tasks" title="Tasks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.75 2.75 6.5v11L12 22.25l9.25-4.75v-11zm0 2.2 6.75 3.47-6.75 3.47-6.75-3.47zm-7.25 5 6.25 3.2v6.88l-6.25-3.21zm14.5 0v6.87l-6.25 3.21v-6.88z"/></svg>
+            <span>AI summaries</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="page-content">
+        <header class="topbar">
+          <h1>AI Government Project Tracker</h1>
+
+          <div class="header-actions">
+            <button class="pill-button icon-button" id="openNotifications" aria-label="Notifications">
+              <span class="bell">🔔</span>
+            </button>
+            <button class="pill-button secondary" id="openIssueModal">Log issue</button>
+            <button class="pill-button primary" id="openProjectModal">+ New project</button>
+          </div>
+        </header>
+
+        <aside id="notificationPanel" class="notification-panel hidden" aria-live="polite">
+          <div class="panel-header compact">
+            <h3>Automated reminders</h3>
+            <button class="text-button" id="closeNotifications">Close</button>
+          </div>
+          <ul id="reminderList"></ul>
+        </aside>
+
+        <section class="overview-panel">
+          <div class="overview-header">
+            <div>
+              <h2>Delivery overview</h2>
+              <p>Exceptions first—so leaders can act before delivery slips.</p>
+            </div>
+
+            <div class="filters">
+              <label class="select-wrap">
+                <span class="sr-only">Department</span>
+                <select id="departmentFilter" aria-label="Department">
+                  <option value="All departments">All departments</option>
+                  <option value="Human Settlements">Human Settlements</option>
+                  <option value="Health">Health</option>
+                  <option value="Education">Education</option>
+                </select>
+              </label>
+
+              <label class="select-wrap">
+                <span class="sr-only">Period</span>
+                <select aria-label="Period">
+                  <option>This quarter</option>
+                  <option>This month</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="label">Active projects</div>
+              <div class="value" id="activeProjectsStat">12</div>
+              <div class="meta success" id="activeProjectsMeta">8 on track</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="label">Open issues</div>
+              <div class="value" id="openIssuesStat">7</div>
+              <div class="meta danger" id="openIssuesMeta">2 require escalation</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="label">Milestones due</div>
+              <div class="value" id="milestonesDueStat">9</div>
+              <div class="meta warning" id="milestonesDueMeta">3 due this week</div>
+            </article>
+
+            <article class="stat-card">
+              <div class="label">Overall delivery health</div>
+              <div class="value" id="deliveryHealthStat">78%</div>
+              <div class="meta success" id="deliveryHealthMeta">+4% since last review</div>
+            </article>
+          </div>
+
+          <div class="bottom-panels">
+            <div class="panel portfolio-panel">
+              <div class="panel-header">
+                <h3>Portfolio health</h3>
+                <span class="badge subtle">Updated today</span>
+              </div>
+
+              <div class="bar-track" aria-label="Portfolio health distribution">
+                <span class="segment green" id="portfolioOnTrack" style="width: 62%"></span>
+                <span class="segment amber" id="portfolioAtRisk" style="width: 23%"></span>
+                <span class="segment red" id="portfolioDelayed" style="width: 15%"></span>
+              </div>
+
+              <div class="legend">
+                <span class="legend-item"><i class="dot green"></i><span id="legendOnTrack">On track 62%</span></span>
+                <span class="legend-item"><i class="dot amber"></i><span id="legendAtRisk">At risk 23%</span></span>
+                <span class="legend-item"><i class="dot red"></i><span id="legendDelayed">Delayed 15%</span></span>
+              </div>
+
+              <div class="project-list" id="projectList"></div>
+            </div>
+
+            <aside class="panel ai-panel">
+              <div class="panel-header compact">
+                <h3>AI management summary</h3>
+                <span class="spark">✦</span>
+              </div>
+
+              <p class="muted">Generated from current project, issue and milestone data.</p>
+
+              <div class="summary-box">
+                <strong>Attention needed</strong>
+                <p id="summaryText">Housing Allocation Digitisation is delayed by document-verification integration. Clinic Connectivity is at risk because two regional site surveys are overdue.</p>
+              </div>
+
+              <button class="generate-button" id="generateSummary">Generate latest summary</button>
+            </aside>
+          </div>
+
+          <div class="alert-grid">
+            <div class="panel risk-panel">
+              <div class="panel-header">
+                <h3>Priority risk alerts</h3>
+                <button class="text-button" id="viewAllIssues">View all</button>
+              </div>
+
+              <div class="alert-list" id="alertList"></div>
+            </div>
+
+            <div class="panel milestones-panel">
+              <div class="panel-header">
+                <h3>Upcoming milestones</h3>
+                <span class="muted-small">Next 14 days</span>
+              </div>
+
+              <div class="milestone-list" id="milestoneList"></div>
+            </div>
+          </div>
+
+          <section class="panel register-panel">
+            <div class="panel-header">
+              <h3>Project register</h3>
+              <button class="text-button" id="registerAddProject">Add project</button>
+            </div>
+            <div class="table-scroll">
+              <table class="project-register-table">
+                <thead>
+                  <tr>
+                    <th>Project</th>
+                    <th>Department</th>
+                    <th>Owner</th>
+                    <th>Progress</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="projectTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="panel task-panel">
+            <div class="panel-header">
+              <h3>Task pipeline</h3>
+              <button class="text-button" id="taskAddIssue">Add task</button>
+            </div>
+            <div id="taskList" class="task-list"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <div id="projectModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="projectModalTitle">Add project</h3>
+          <button class="close-button" data-close="projectModal" aria-label="Close">×</button>
+        </div>
+        <form id="projectForm">
+          <div class="field-grid">
+            <label>
+              Project name
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              Department
+              <select name="department" required>
+                <option value="Health">Health</option>
+                <option value="Education">Education</option>
+                <option value="Human Settlements">Human Settlements</option>
+              </select>
+            </label>
+            <label>
+              Owner
+              <input type="text" name="owner" required />
+            </label>
+            <label>
+              Progress (%)
+              <input type="number" name="progress" min="0" max="100" value="50" required />
+            </label>
+            <label>
+              Due date
+              <input type="date" name="dueDate" required />
+            </label>
+          </div>
+          <button type="submit" class="primary submit-button">Save project</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="issueModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="issueModalTitle">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="issueModalTitle">Log issue</h3>
+          <button class="close-button" data-close="issueModal" aria-label="Close">×</button>
+        </div>
+        <form id="issueForm">
+          <div class="field-grid">
+            <label>
+              Issue title
+              <input type="text" name="title" required />
+            </label>
+            <label>
+              Related project
+              <select name="project" id="issueProjectSelect" required></select>
+            </label>
+            <label>
+              Owner
+              <input type="text" name="owner" required />
+            </label>
+            <label>
+              Priority
+              <select name="priority" required>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </label>
+            <label>
+              Due date
+              <input type="date" name="dueDate" required />
+            </label>
+          </div>
+          <button type="submit" class="primary submit-button">Save issue</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

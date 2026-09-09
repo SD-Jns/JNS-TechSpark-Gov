@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks | JNS AI Government Project Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Sidebar navigation">
+        <div class="brand-mark" aria-label="JNS home"><span>JNS</span></div>
+        <div class="brand-copy"><strong>Project Tracker</strong><span>Government Delivery</span></div>
+        <nav class="sidebar-nav" aria-label="Pages">
+          <a class="nav-button" href="index.html" aria-label="Overview" title="Overview">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zm9 0h7v4h-7zm0 6h7v10h-7zM4 13h7v7H4z"/></svg>
+            <span>Overview</span>
+          </a>
+          <a class="nav-button" href="projects.html" aria-label="Projects" title="Projects">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5zm2 1.5h12v10H6zm2 2v6h8v-6zm2 1h4v4h-4z"/></svg>
+            <span>Project register</span>
+          </a>
+          <a class="nav-button" href="issues.html" aria-label="Issues" title="Issues">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.75a6 6 0 0 1 6 6v4.4l1.9 4.1a1 1 0 0 1-.9 1.45H4.99a1 1 0 0 1-.9-1.45l1.9-4.1V8.75a6 6 0 0 1 6-6zm0 18a2.5 2.5 0 0 1-2.45-2h4.9A2.5 2.5 0 0 1 12 20.75z"/></svg>
+            <span>Issue tracking</span>
+          </a>
+          <a class="nav-button active" href="tasks.html" aria-label="Tasks" title="Tasks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h10v2H8zm0 6h10v2H8zm0 6h10v2H8zM4 5h2v2H4zm0 6h2v2H4zm0 6h2v2H4z"/></svg>
+            <span>AI summaries</span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="page-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Delivery execution</p>
+            <h1>Task pipeline</h1>
+          </div>
+          <div class="header-actions">
+            <button class="pill-button secondary" id="taskReminderOpen">Reminders</button>
+            <button class="pill-button primary" id="taskQuickAdd">+ Add task</button>
+          </div>
+        </header>
+
+        <aside id="notificationPanel" class="notification-panel hidden"></aside>
+
+        <section class="panel page-panel">
+          <div class="panel-header">
+            <h3>Open tasks</h3>
+          </div>
+          <div id="taskList" class="task-list"></div>
+        </section>
+
+        <section class="panel page-panel form-panel">
+          <div class="panel-header">
+            <h3>Add a task</h3>
+          </div>
+          <form id="taskForm" class="entity-form">
+            <div class="field-grid">
+              <label>
+                Task title
+                <input type="text" name="title" placeholder="Task title" required />
+              </label>
+              <label>
+                Project
+                <select name="project" id="taskProjectSelect" required></select>
+              </label>
+              <label>
+                Owner
+                <input type="text" name="owner" placeholder="Owner name" required />
+              </label>
+              <label>
+                Due date
+                <input type="date" name="dueDate" required />
+              </label>
+              <label>
+                Status
+                <select name="status" required>
+                  <option value="Pending">Pending</option>
+                  <option value="In progress">In progress</option>
+                  <option value="Blocked">Blocked</option>
+                </select>
+              </label>
+            </div>
+            <button type="submit" class="primary submit-button">Save task</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
